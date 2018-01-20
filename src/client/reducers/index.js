@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import actionReducer from './actionReducer';
+import facebookReducer from './facebookReducer';
 
 const reducers = combineReducers({
-  actionReducer,
+  facebookReducer,
 });
 
 export default reducers;

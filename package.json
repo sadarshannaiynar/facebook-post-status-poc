@@ -9,7 +9,6 @@
     "prebuild": "./node_modules/.bin/pm2 stop src/server/ecosystem.json",
     "build": "webpack -p --progress --colors",
     "serve": "./node_modules/.bin/pm2 startOrReload src/server/ecosystem.json && npm run logs",
-    "serve:docker": "./node_modules/.bin/pm2 startOrReload server/docker-ecosystem.json && npm run logs",
     "logs": "./node_modules/.bin/pm2 logs",
     "lint:client": "eslint --ext .js --ext .jsx ./src/client/",
     "lint:test": "eslint --ext .js --ext .jsx ./test/unit/",
@@ -21,20 +20,32 @@
     "pretest:feature": "rimraf reports/* & rimraf logs/selenium-debug.log && npm run selenium",
     "test:feature": "nightwatch",
     "posttest:feature": "node html-cucumber-reports.js",
-    "pm2:update": "./node_modules/.bin/pm2 update"
+    "pm2:update": "./node_modules/.bin/pm2 update",
+    "pm2:kill": "./node_modules/.bin/pm2 kill"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adarshannaiynar/urban_general"
+    "url": "https://github.com/adarshannaiynar/facebook-post-status-poc"
   },
   "author": "Adarsh",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "connect-redis": "^3.3.3",
     "cross-env": "^5.0.1",
     "express": "^4.15.3",
+    "express-session": "^1.15.6",
+    "express-winston": "^2.4.0",
     "lodash": "^4.17.4",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
     "pm2": "^2.6.1",
-    "pug": "^2.0.0-rc.2"
+    "pug": "^2.0.0-rc.2",
+    "redis": "^2.8.0",
+    "uuid": "^3.1.0",
+    "winston": "^2.4.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -49,10 +60,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "babel-preset-stage-1": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "body-parser": "^1.18.2",
     "chai": "^4.1.0",
     "chokidar-cli": "^1.2.0",
-    "cookie-parser": "^1.4.3",
     "css-loader": "^0.28.4",
     "cucumber": "^3.0.2",
     "cucumber-html-reporter": "^3.0.1",
@@ -66,7 +75,6 @@
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.1.0",
-    "express-winston": "^2.4.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.5",
     "history": "^4.6.3",
@@ -99,10 +107,8 @@
     "stylelint-config-standard": "^17.0.0",
     "stylelint-webpack-plugin": "^0.9.0",
     "url-loader": "^0.6.2",
-    "uuid": "^3.1.0",
     "webpack": "^3.4.1",
-    "webpack-dev-server": "^2.6.1",
-    "winston": "^2.4.0"
+    "webpack-dev-server": "^2.6.1"
   },
   "nyc": {
     "sourceMap": false,

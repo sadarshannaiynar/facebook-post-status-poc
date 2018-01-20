@@ -1,17 +1,14 @@
 import { connect } from 'react-redux';
-import App from 'components/App';
-import actions from 'actions/actionCreators';
+import App from '../components/App';
+import facebookActions from '../actions/facebookActions';
 
 const mapStateToProps = state => ({
-  value: state.actionReducer.value,
+  message: state.facebookReducer.message,
 });
 
 const mapDispatchToProps = dispatch => ({
-  increment: () => {
-    dispatch(actions.incrementAction());
-  },
-  decrement: () => {
-    dispatch(actions.decrementAction());
+  postStatus: (message) => {
+    dispatch(facebookActions.postStatus(message));
   },
 });
 
